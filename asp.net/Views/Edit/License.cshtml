@@ -1,0 +1,388 @@
+﻿@model Intranet.Models.MarinerLicense
+@{
+    
+    ViewBag.Title = "License";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="../../Scripts/jquery-1.7.2-vsdoc.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.chained.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+
+
+    $(function () {
+
+
+        $("#LicenseType").chained("#CountryType");
+
+        $("#IssueDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+        $("#ExpirationDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+        $("#ActDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+        $("#myUpdateActDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+
+        $(document).keyup(function () {
+            $("#updateButton").addClass("btn-warning");
+            $("#updateButton").addClass("btn-large");
+        });
+
+        $("#add_activity").click(function () {
+
+            var actDate = $("#ActDate").val();
+            var actNotes = $("#ActNotes").val();
+            var actMarLicId = $("#MarLicId").val();
+            if (actNotes.length == 0) {
+                window.alert('You must enter a note, or Cancel from the dialog');
+            }
+            else {
+                $.ajax({
+                    type: 'post',
+                    url: '../../Edit/AddAct',
+                    data: { 'MarLicId': actMarLicId, 'setDate': actDate, 'setNotes': actNotes },
+                    success: function (data) {
+                        window.location.reload(true);
+                    }
+
+                });
+            }
+        });
+
+        $("#update_activity").click(function () {
+
+            var actDate = $("#myUpdateActDate").val();
+            var actNotes = $("#myUpdateNotes").val();
+            var actId = $("#myUpdateID").val();
+            if (actNotes.length == 0) {
+                window.alert('You must enter a note, or Cancel from the dialog');
+            }
+            else {
+                $.ajax({
+                    type: 'post',
+                    url: '../../Edit/UpdateActivity',
+                    data: { 'ActID': actId, 'setDate': actDate, 'setNotes': actNotes },
+                    success: function (data) {
+                        window.location.reload(true);
+                    }
+
+                });
+            }
+        });
+
+        $("#delete_activity").click(function () {
+
+            var actid = $("#myUpdateID").val();
+
+            $.ajax({
+                type: 'post',
+                url: '../../Edit/DeleteActivity',
+                data: { 'ActID': actid },
+                success: function (data) {
+                    window.location.reload(true);
+                }
+            });
+
+        });
+
+
+        $(".modifyACT").click(function () {
+            var holdOn = $(this);
+            //  var r = window.alert("Edit : " + holdOn.attr("id") + " ?");
+            $("#myUpdateID").attr("value", holdOn.attr("id"));
+            $("#myUpdateActDate").attr("value", holdOn.attr("data-actdate"));
+            $("#myUpdateNotes").attr("value", holdOn.attr("data-actnotes"));
+            $("#myUpdate").modal("show");
+        });
+
+        $("i").click(function () {
+            var holdOn = $(this);
+            var r = window.confirm("Delete this License attachment: " + holdOn.attr("data-filename") + " ?");
+
+            if (r == true) {
+                r = window.confirm("Proceed with delete \r" + holdOn.attr("data-filename"));
+                if (r == true) {
+                    $.ajax({
+                        type: 'post',
+                        url: '../../Edit/DelLicenseAttachment',
+                        data: { 'attid': holdOn.attr("id") },
+                        success: function (data) {
+                            window.location.reload(true);
+                        }
+                    });
+
+                }
+                else { }
+            }
+            else {
+
+            }
+
+        });
+
+
+
+
+
+    });
+</script>
+
+<div class="row">
+    <div class="span8 text-XLarge">License</div>
+
+
+
+    <div class="span3">
+        <a class="btn btn-small" href="../../Info/Details/@Model.MarinerID">Back to Mariner Information
+        </a>
+    </div>
+</div>
+<div class="well">
+    <!-- Error Success Msg -->
+    <div class="row">
+        <div class="span5">
+            @if (!Request.QueryString["type"].IsEmpty())
+            {
+                if (@Request.QueryString["type"] == "s")
+                {
+                <div class="alert alert-success">@Request.QueryString["msg"]
+                    <button class="close" data-dismiss="alert">×</button>
+                </div>
+                }
+                else if (@Request.QueryString["type"] == "e")
+                {
+                <div class="alert alert-error">@Request.QueryString["msg"]
+                    <button class="close" data-dismiss="alert">×</button>
+                </div>
+
+                }
+
+
+            }
+
+
+
+            <div class="span4 text-XLarge">@ViewBag.Mariner</div>
+            <!-- <div class="span4 text-XLarge">@ViewBag.MarinerAddress</div> -->
+        </div>
+    </div>
+    <br />
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span7">
+
+                @if (Model != null)
+                {
+                    using (Html.BeginForm("UpdateLicense", "Edit", FormMethod.Post))
+                    {     
+                    <div class="row">
+                        <div class="span4">
+                            <label>Endorsement Issued*</label>
+                            <input class="input-xxlarge" id="EndorsementInfo" name="EndorsementInfo" value="@Model.EndorsementInfo"/>
+
+                            <br />
+                        </div>
+
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="span3">
+                            Issue<br />
+                            <input id="IssueDate" style="width:125px;" name="IssueDate" type="text" value="@Convert.ToDateTime(Model.IssueDate).ToShortDateString()">
+                        </div>
+                        <div class="span4">
+                            Expiration<br />
+                            <input id="ExpirationDate" style="width:125px;" name="ExpirationDate" type="text" value="@Convert.ToDateTime(Model.ExpirationDate).ToShortDateString()">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="span3">
+                            <label>Country*</label>
+                            <select id="CountryType" style="width: 150px;">
+                                <option value="">-- Please Select --</option>
+                                @foreach (var Country in ViewBag.LookupCountry)
+                                {
+                                    if (ViewBag.CurrentCountryID == Country.id)
+                                    { 
+                                    <option value="@Country.id" selected >@Country.Country1</option> 
+                                    }
+                                    else
+                                    {
+                                    <option value="@Country.id">@Country.Country1</option> 
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div class="span4">
+                            <label>License*</label>
+                            <select id="LicenseType" name="LicenseID" style="width: 300px">
+                                <option value="">-- Please Select --</option>
+                                @foreach (var License in ViewBag.LookupLicense)
+                                {
+                                    if (Model.LicenseID == License.Id)
+                                    { 
+                                    <option class="@License.CountryID" value="@License.Id" selected >@License.Title</option> 
+                                    }
+                                    else
+                                    { 
+                                    <option   class="@License.CountryID" value="@License.Id">@License.Title</option> 
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+    
+                    <div class="row">
+
+                        <div class="span6">
+                            <br />
+                            @if (Model.PendingGovt)
+                            {
+                                @:<input type="checkbox" id="ckPendingGovt"  name="ckPendingGovt" title="Pending Government" value="true" checked />Pending Government &nbsp;&nbsp;&nbsp;
+                            }
+                            else
+                            {
+                                @:<input type="checkbox" id="ckPendingGovt"  name="ckPendingGovt" title="Pending Government" value="true" />Pending Government &nbsp;&nbsp;&nbsp;
+                            }
+                            @if (Model.PendingGlobal)
+                            {
+                                @:<input type="checkbox" id="ckPendingGC"  name="ckPendingGC" title="Pending Global" value="true" checked />Pending Global
+                            }
+                            else
+                            {
+                                @:<input type="checkbox" id="ckPendingGC"  name="ckPendingGC" title="Pending Global" value="true" />Pending Global
+                            }
+                            <br />
+                            <br />
+                            Global Compliance Notes<br />
+                            <textarea id="NotesGlobal" name="NotesGlobal" style="width: 550px;" cols="1" rows="4">@Model.NotesGlobal</textarea>
+                            <br />
+
+                            Pending Government Notes<br />
+                            <textarea id="GovtNotes" name="NotesPendingGovt" style="width: 550px;" cols="1" rows="4">@Model.NotesPendingGovt</textarea>
+                            <input id="updateButton" type="submit" value="Update License" />
+                        </div>
+
+
+                        <!-- Modal Add -->
+                        <div class="span4">
+
+
+                            <div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h3 id="myModalLabel">Add Activity</h3>
+                                </div>
+                                <div class="modal-body">
+                                    Date
+                                    <br />
+                                    <input id="ActDate" name="ActDate" type="text" value="@DateTime.Now.ToShortDateString()"><br />
+                                    Activity<br />
+                                    <textarea id="ActNotes" style="width: 500px;" name="ActNotes" cols="1" rows="4"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" name="MarLicId" id="MarLicId" value="@Model.id" />
+                                    <a class="btn" data-dismiss="modal" aria-hidden="true">Cancel</a>
+                                    <a id="add_activity" class="btn " data-dismiss="modal" aria-hidden="true">Add Activity</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Model -- Update -->
+                        <div class="span4">
+                            <div class="modal hide" id="myUpdate" tabindex="-1" role="dialog" aria-labelledby="myUpdateModalLabel" aria-hidden="true">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h3 id="myUpdateLabel">Update/Delete Activity</h3>
+                                </div>
+                                <div class="modal-body">
+                                    Date
+                                    <br />
+                                    <input id="myUpdateActDate" name="ActDate" type="text" value=""><br />
+                                    Activity<br />
+                                    <textarea id="myUpdateNotes" style="width: 500px;" name="ActNotes" cols="1" rows="4"></textarea>
+                                    <div id="myUpdateID" style="visibility: hidden" data-id=""></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" name="MarLicId" id="MyUpdateMarLicId" value="@Model.id" />
+                                    <a id="delete_activity" class="btn" data-dismiss="modal" aria-hidden="true">Delete</a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a class="btn" data-dismiss="modal" aria-hidden="true">Cancel</a>
+                                    <a id="update_activity" class="btn " data-dismiss="modal" aria-hidden="true">Update</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+ 
+                    <input type="hidden" name="id" value="@Model.id" />
+                    <input type="hidden" name="MarinerID" value="@Model.MarinerID" />
+
+                    }// end form 
+ 
+ 
+                    <div class="row">
+                        <div class="span8">
+                            <br />
+                            <label class="text-XLarge">Attachments for this License</label>
+                            @foreach (var liA in ViewBag.LicenseAttachments)
+                            { 
+                                <a href="../../Documents/@liA.Location/@liA.FileName" >@liA.FileName </a>@:&nbsp;
+                                <i class="icon-remove-sign" id="@liA.id" data-filename="@liA.FileName"></i> @:&nbsp; &nbsp; &nbsp;
+       
+                            }
+                        </div>
+                    </div>  
+                    <br />
+                    <div class="row">
+                        <div class="span4">
+                            @using (Html.BeginForm("UploadLicAttach", "Edit", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="file" name="file" style="width: 400px" /> 
+                                <input type="hidden" name="licenseid" value="@Model.id" />
+                                <input type="hidden" name="marinerid" value="@Model.MarinerID" />
+                                <input type="submit" value="Upload selected file" />
+                            }
+                        </div>
+                    </div> 
+                    <br /> 
+                }
+
+            </div>
+            <div class="span5 well">
+                <!-- Button to trigger modal -->
+                <h4>Activities &nbsp;&nbsp;&nbsp;<a href="#myModal" role="button" class="btn" data-toggle="modal">Add Activity</a></h4>
+                <br />
+                @if (ViewBag.ActivityList != null)
+                {
+                    foreach (var activity in ViewBag.ActivityList)
+                    { 
+                    <a class="modifyACT icon-pencil" id="@activity.id" data-actnotes="@activity.ActNotes" data-actdate="@activity.ActDate.ToShortDateString()" ></a> 
+                    <label>@activity.ActDate.ToShortDateString() - @activity.ActNotes </label>
+                    }
+
+                }
+            </div>
+
+        </div>
+    </div>

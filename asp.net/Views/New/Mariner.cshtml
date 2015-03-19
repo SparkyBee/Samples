@@ -1,0 +1,235 @@
+﻿@{
+    ViewBag.Title = "Mariner Add New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Mariner <i>Add New</i></h2>
+
+
+<script src="../../Scripts/jquery-1.7.2-vsdoc.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.chained.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#toggleMsg").attr("data-flag", "true");
+
+        $("#addButton").click(function () {
+            $("#toggleMsg").attr("data-flag", "false");
+        });
+
+        $("#LicenseType").chained("#CountryType");
+
+        $("#DateOfBirth").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+     
+
+        $(document).keyup(function () {
+            $("#addButton").addClass("btn-warning");
+            $("#addButton").addClass("btn-large");
+        });
+
+    });
+
+
+    window.onbeforeunload = function () {
+        var test = $("#toggleMsg").attr("data-flag");
+        if (test == "true") {
+            return "Are you sure you want to navigate away? The information has not been saved.";
+        }
+    }
+
+
+</script>
+<div id="toggleMsg" style="visibility: hidden" data-flag="true"></div>
+<div class="well">
+    <div class="row ">
+    </div>
+
+
+
+
+    <!-- Error Success Msg -->
+    <div class="row">
+        <div class="span5">
+            @if (!Request.QueryString["type"].IsEmpty())
+            {
+                if (@Request.QueryString["type"] == Intranet.Utils.Const.UserSuccess)
+                {
+                <div class="alert alert-success">@Request.QueryString["msg"]
+                    <button class="close" data-dismiss="alert">×</button>
+                </div>
+                }
+                else if (@Request.QueryString["type"] == Intranet.Utils.Const.UserError)
+                {
+                <div class="alert alert-error">@Request.QueryString["msg"]
+                    <button class="close" data-dismiss="alert">×</button>
+                </div>
+
+                }
+
+            }
+
+
+
+            <div class="span4 text-XLarge">@ViewBag.Mariner</div>
+            <div class="span4 text-XLarge">@ViewBag.MarinerAddress</div>
+        </div>
+    </div>
+    <br />
+
+    @using (Html.BeginForm("Mariner", "New", FormMethod.Post))
+    {        
+        <br />
+        <div class="row">
+            <div class="span3">
+                <b>Last name</b><br />
+                <input id="LastName" name="LastName" type="text" value="">
+            </div>
+            <div class="span3">
+                <b>First Name</b><br />
+                <input id="FirstName" name="FirstName" type="text" value="">
+            </div>
+            <div class="span3">
+                Middle Name<br />
+                <input id="MiddleName" name="MiddleName" type="text" value="">
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="span3">
+                Address<br />
+                <input id="Address" name="Address" type="text" value="">
+                <input id="Address2" name="Address2" type="text" value="">
+            </div>
+            <div class="span3">
+                City<br />
+                <input id="City" name="City" type="text" value="">
+            </div>
+            <div class="span1">
+                State<br />
+                <input style="width: 25px;" id="State" name="State" type="text" value="">
+            </div>
+
+
+            <div class="span2">
+                ZipCode<br />
+                <input style="width: 100px;" id="ZipCode" name="ZipCode" type="text" value="">
+            </div>
+
+
+            <div class="span1">
+                Country<br />
+                <input style="width: 100px;" id="Country" name="Country" type="text" value="">
+            </div>
+        </div>       
+
+    
+        <div class="row">
+            <div class="span3">
+                Home Phone<br />
+                <input id="HomePhone" name="HomePhone" type="text" value="">
+            </div>
+            <div class="span3">
+                Cell Phone<br />
+                <input id="CellPhone" name="CellPhone" type="text" value="">
+            </div>
+            <div class="span3">
+                Email<br />
+                <input id="Email" name="Email" type="text" value="">
+            </div>
+        </div>    
+
+
+            
+        <div class="row">
+            <div class="span3">
+                <b>Employer</b><br />
+                 @Html.DropDownList("Employer", ViewBag.EmployerSelectList as SelectList,"-- Select Employer --")
+                @*<input id="Employer" name="Employer" type="text" value="">*@
+            </div>
+            <div class="span3">
+                Vessel Name<br />
+                <input id="RigName" name="RigName" type="text" value="">
+            </div>
+            <div class="span3">
+                Citizenship<br />
+                <input id="Citizenship" name="Citizenship" type="text" value="">
+            </div>
+
+
+        </div>    
+   
+        <div class="row">
+            <div class="span2">
+                SSN<br />
+                <input style="width: 100px;" id="SSN" name="SSN" type="text" value="">
+            </div>
+            <div class="span2">
+                Passport<br />
+                <input style="width: 120px;" id="Passport" name="Passport" type="text" value="">
+            </div>
+            <div class="span2">
+                Birth Certificate<br />
+                <input style="width: 120px;" id="BirthCert" name="BirthCert" type="text" value="">
+            </div>
+            <div class="span2">
+                Date of Birth<br />
+                <input style="width: 120px;" id="DateOfBirth" name="DateOfBirth" type="text" value="">
+            </div>
+            <div class="span2">
+                City of Birth<br />
+                <input style="width: 120px;" id="CityOfBirth" name="CityOfBirth" type="text" value="">
+            </div>
+            <div class="span2">
+                State of Birth<br />
+                <input style="width: 120px;" id="StateOfBirth" name="StateOfBirth" type="text" value="">
+            </div>
+            <div class="span2">
+                Country of Birth<br />
+                <input style="width: 120px;" id="CountryOfBirth" name="CountryOfBirth" type="text" value="">
+            </div>
+
+        </div>    
+        <!--   
+<div class="row">
+    <div class="span2">
+     Hair Color<br /> 
+        <input style="width:100px;" id="HairColor" name="HairColor" type="text" value="">
+     
+    </div>
+    <div class="span2">
+         Eye Color<br /> 
+            <input style="width:120px;" id="EyeColor" name="EyeColor" type="text" value="">       
+    </div>
+<div class="span2">
+         Height<br /> 
+            <input style="width:120px;"  id="Height" name="Height" type="text" value="">       
+    </div>
+<div class="span2">
+         Weight<br /> 
+            <input style="width:120px;" id="Weight" name="Weight" type="text" value="">       
+    </div>
+ 
+</div>    
+-->    
+ 
+        <div class="row">
+            <div class="span2">
+                Notes<br />
+                <textarea cols="" rows="5" style="width: 930px;" id="Notes" name="Notes" type="text"></textarea>
+            </div>
+        </div>
+ 
+        <br />
+        <br />
+        <input id="addButton" type="submit" value="Update" /> 
+   
+    }
+
+</div>

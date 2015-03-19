@@ -1,0 +1,84 @@
+﻿body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.sidebar-nav {
+    padding: 9px 0;
+}
+
+.field-validation-error
+{
+    color: #B94A48;
+}
+a {color:#000000;}
+/*a:hover{ text-decoration: underline;  color:#000000; cursor:pointer; } */
+a:visited {
+    text-decoration:none; 
+    }
+ 
+table.myTable { border-collapse:collapse; }
+    table.myTable td, table.myTable th {
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+.smallerTableFont {
+    font-size:0.9em; }
+ 
+ /*.hover {
+    background-color:white;
+}
+ #searchResults tr:hover {
+    background-color:yellow;
+}*/
+
+/* Details page */
+.MarName { text-decoration:underline;}
+.text-XLarge {font-size:1.5em;}
+.text-Large {font-size:1.3em;}
+.text-Medium {font-size:1.2em;}
+.text-Normal {font-size:1.0em;}
+.text-Small {font-size:.9em;}  
+.text-Mini {font-size:.7em;} 
+
+.isPending { color:Red; font-weight:bold;}
+
+/*labels align with radio buttons*/
+.labelInline {
+  display: inline-block;
+  padding-top: 5px;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+.padEnd {
+   padding-right:15px;
+}
+
+div.shiftRight {
+    padding-left:30px ; 
+   margin-top: -15px;
+}
+
+.padFront {
+   padding-left:8px;
+}
+
+.padBottom {
+    padding-bottom: 12px;
+}
+
+ .odd-row 
+ {
+   background-color:#e8edff; 
+     }
+
+.rptBorder {
+    padding:4px 4px 4px 4px; 
+    border:solid;
+    border-width:1px;
+    width:500px; 
+}
+.radio input[type="radio"] {
+    margin-top:4px;
+}

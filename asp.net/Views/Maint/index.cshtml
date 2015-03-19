@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Maintenance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Maintenance</h2>
+
+<script src="../../Scripts/jquery-1.7.2-vsdoc.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.chained.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#LicenseType").chained("#CountryType");
+
+        $("#DateOfBirth").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+
+    });
+</script>
+<div class="well">
+
+
+
+
+    <!-- Error Success Msg -->
+    <div class="row">
+        <div class="span5">
+            @if (!Request.QueryString["type"].IsEmpty())
+            {
+                if (@Request.QueryString["type"] == Intranet.Utils.Const.UserSuccess)
+                {
+                <div class="alert alert-success">@Request.QueryString["msg"]
+                    <button class="close" data-dismiss="alert">×</button>
+                </div>
+                }
+                else if (@Request.QueryString["type"] == Intranet.Utils.Const.UserError)
+                {
+                <div class="alert alert-error">@Request.QueryString["msg"]
+                    <button class="close" data-dismiss="alert">×</button>
+                </div>
+
+                }
+
+            }
+
+            @using (Html.BeginForm("NewCountry", "Maint", FormMethod.Post))
+            {     
+
+                <div class="row ">
+                    <div class="span5">
+                        <label>Enter a New Country for Country Listing</label>
+                        <input class="input-large" id="NewCountry" name="NewCountry" value="" />
+                        <br />
+                        <br />
+                        <input type="submit" value="Add New Country" />
+                    </div>
+                </div>
+   
+            }
+            <br />
+            <br />
+            @using (Html.BeginForm("NewLicense", "Maint", FormMethod.Post))
+            {     
+
+                <div class="row ">
+                    <div class="span5">
+
+                        <label>Select a Country for the new License</label>
+                        <select id="CountryType" name="CountryType">
+                            <option value="">-- Please Select --</option>
+                            @foreach (var Country in ViewBag.LookupCountry)
+                            {  
+                                <option value="@Country.id">@Country.Country1</option>          
+                            }
+                        </select>
+
+                        <label>Enter a New License for Country & License Listing</label>
+                        <input class="input-xlarge" id="NewLic" name="NewLic" value="" />
+                        <br />
+                        <br />
+                        <input type="submit" value="Add New License for a Country" />
+
+                    </div>
+                </div>
+   
+            }
+            <br />
+            <br />
+              @using (Html.BeginForm("NewEmployer", "Maint", FormMethod.Post))
+            {     
+
+                <div class="row ">
+                    <div class="span5">
+
+                        
+                        <label>Enter a New Employer</label><br />
+
+                        <label>Password <i>(required)</i>:  </label>
+                        <input class="input-xlarge"  type="password" id="Pass" name="Pass" value="" />
+                        <label>New Employer:  </label>
+                        <input class="input-xlarge" id="Emp" name="Emp" value="" />
+                        <br />
+                        <br />
+                        <input type="submit" value="Add New Employer" />
+                    </div>
+                </div>
+   
+            }
+            <br />
+            <br />
+
+
+        </div>
+    </div>

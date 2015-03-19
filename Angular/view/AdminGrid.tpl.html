@@ -1,0 +1,18 @@
+<table role="grid" class="grid-styling">
+    <thead>
+    <tr>
+        <th class="no-show"></th>
+        <th>Select item to Edit/Delete</th>
+        <th></th>
+    </tr>
+    </thead>
+
+    <tbody id="dataGrid" class="tbl-grid">
+        <tr ng-repeat="item in tblList" ng-click="ctrl.SelectedItem(item._id)">
+            <td class="no-show">{{item._id}}</td>
+            <td>{{item[col1]}}</td>
+            <td ng-hide="col2==''">{{item[col2]}}</td>
+        </tr>
+
+    </tbody>
+</table>

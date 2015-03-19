@@ -1,0 +1,265 @@
+
+/*font-family: 'Allan', cursive;*/
+/*font-family: 'Oxygen', sans-serif;*/
+
+body {
+    font-family: 'trebuchet ms', verdana, arial;
+    font-size: 0.75em;
+    background-color: #A7A37E;
+}
+
+a {
+    color:#5E5624;
+}
+a:hover{
+    text-decoration: underline;
+    color:#5E5624;
+}
+a:visited {
+    text-decoration: none;
+}
+.quick-links a {
+    font-size: 1.25em;
+    color:#5E5624;
+}
+
+.header {
+    margin: 30px 0 3px 0;
+}
+
+.header .script {
+    font-size: 4em;
+    font-family:'trebuchet ms', verdana, arial;
+    text-align: center;
+}
+.header .bottom {
+    height: 2px;
+    margin: 10px 0 1px 0;
+    background-color: #2A3A48;
+
+}
+
+.news-date{
+    padding: 5px 0 3px 0;
+}
+
+.file-list{
+    margin: 0 0 0 15px;
+}
+
+.title-script {
+    font-size: 1.75em;
+    font-family: 'Allan', cursive;
+    padding: 5px 0 15px 0px;
+    color: #5E5624;
+}
+
+.title-script-main-news {
+    font-size: 1.75em;
+    font-family: 'Allan', cursive;
+    padding: 5px 0 15px 0px;
+    color: #5E5624;
+}
+
+.title-script-files {
+    font-size: 1.75em;
+    font-family: 'Allan', cursive;
+    padding: 5px 0 15px 0px;
+    color: #5E5624;
+}
+
+
+.title-file-toggle {
+
+    font-size: 1.1em;
+    padding-bottom:  10px;
+
+}
+
+.title-script-larger {
+    font-size: 3.0em;
+    font-family: 'Allan', cursive;
+    padding: 5px 0px 15px 0px;
+}
+
+.title-standard {
+    font-size: 1.75em;
+    font-family: 'Oxygen', sans-serif;
+    padding: 5px 0 5px 0px;
+}
+
+.image-size {
+    max-width: 400px;
+    float: right;
+    max-height: 300px;
+    display: block;
+    margin: 0 auto ;
+    padding-left: 15px;
+
+}
+.underline-it {
+    text-decoration: underline;
+}
+.regular {
+    font-family: 'Oxygen', sans-serif;
+}
+
+.quick-links {
+    background-color:#E6E2AF;
+    color:#5E5624;
+}
+.fixed-100 {
+    min-width: 120px;
+}
+.border-on{
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+    padding-bottom: 10px;
+}
+.news {
+    border-color: #000000;
+  color:#5E5624;
+    background-color: #A7A37E;
+}
+
+.weather {
+   background-color:oldlace;
+}
+
+.new-tab-title {
+    height: 15px;
+
+}
+.news-main-text{
+    white-space: pre-wrap;
+    text-align: justify;
+
+}
+
+
+.news-listing {
+    font-size: 0.75em;
+    line-height: 95%;
+    padding-bottom: 15px;
+    color:#5E5624;
+
+}
+.next-prev-group{
+    display: inline;
+}
+.push-right {
+    float: right;
+}
+
+.byline {
+    font-size: 1em;
+    font-family: 'Allan', cursive;
+    color: #5E5624;
+}
+
+.pad-bottom-5 {
+    padding-bottom: 5px;
+}
+
+.pad-bottom-10 {
+    padding-bottom: 5px;
+}
+
+
+
+.bold-it {
+    font-weight: bolder;
+}
+
+/*admin stuff*/
+
+table {
+    width: auto;
+
+}
+thead > tr, tbody{
+    display:block;
+   }
+
+tbody {
+    height: 500px;
+    overflow:auto;
+}
+
+table tbody.tbl-grid tr td{
+    font-size: 1em;
+}
+
+#dataGrid tr:hover {
+    background-color: #3a9  !important;
+}
+
+.grid-styling {
+    width: 343px;
+}
+
+.v-space-100 {
+    height: 100px;
+}
+.v-space-5 {
+     height: 5px;
+ }
+
+.v-space-10 {
+    height: 5px;
+}
+
+.width-401{
+    width: 401px;
+}
+.no-show {
+    display: none;
+}
+
+
+
+.sub-nav {
+    display: block;
+    width: auto;
+    overflow: hidden;
+    margin: -0.25rem 0 1.125rem;
+    padding-top: 0.25rem;
+    margin-right: 0;
+    margin-left: -0.75rem; }
+.sub-nav dt {
+    text-transform: uppercase; }
+.sub-nav dt,
+.sub-nav dd,
+.sub-nav li {
+    float: left;
+    display: inline;
+    margin-left: 1rem;
+    margin-bottom: 0.625rem;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-size: 0.875rem;
+    color: #E6E2AF; }
+.sub-nav dt a,
+.sub-nav dd a,
+.sub-nav li a {
+    text-decoration: none;
+    color: #E6E2AF;
+    padding: 0.1875rem 1rem; }
+.sub-nav dt a:hover,
+.sub-nav dd a:hover,
+.sub-nav li a:hover {
+    color: #5E5624; }
+.sub-nav dt.active a,
+.sub-nav dd.active a,
+.sub-nav li.active a {
+    border-radius: 3px;
+    font-weight: normal;
+    background: #E6E2AF;
+    padding: 0.1875rem 1rem;
+    cursor: default;
+    color: #000000; }
+.sub-nav dt.active a:hover,
+.sub-nav dd.active a:hover,
+.sub-nav li.active a:hover {
+    background: #5E5624; }

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="micdb_14" Class="dbGCompDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=Barrett-pc\SQLEXPRESS;Initial Catalog=micdb_14;Persist Security Info=True;User ID=GUser" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="scfConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.License" Member="Licenses">
+    <Type Name="License">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LicenseAttachment" Member="LicenseAttachments">
+    <Type Name="LicenseAttachment">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MarinerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MarinerLicenseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Location" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Country" Member="Countries">
+    <Type Name="Country">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Country" Member="Country1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Image" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MarinerAttachment" Member="MarinerAttachments">
+    <Type Name="MarinerAttachment">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MarinerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Filename" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Location" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Mariner" Member="Mariners">
+    <Type Name="Mariner">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZipCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="HomePhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CellPhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Employer" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="SSN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Passport" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BirthCert" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Citizenship" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RigName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="DateOfBirth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CityOfBirth" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="StateOfBirth" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CountryOfBirth" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="HairColor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EyeColor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Height" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(3000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_LicensebyCountry" Member="vw_LicensebyCountries">
+    <Type Name="vw_LicensebyCountry">
+      <Column Name="Title" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Image" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Activity" Member="Activities">
+    <Type Name="Activity">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MarinerLicenseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ActDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ActNotes" Type="System.String" DbType="VarChar(1500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MarinerLicense" Member="MarinerLicenses">
+    <Type Name="MarinerLicense">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MarinerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LicenseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EndorsementInfo" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="IssueDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ExpirationDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NotesPendingGovt" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="NotesGlobal" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="PendingGovt" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PendingGlobal" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employer" Member="Employers">
+    <Type Name="Employer">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Employer" Member="Employer1" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_Employer" Member="vw_Employers">
+    <Type Name="vw_Employer">
+      <Column Name="Employer" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_Employer_Rig" Member="vw_Employer_Rigs">
+    <Type Name="vw_Employer_Rig">
+      <Column Name="Employer" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="RigName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="EmpRig" Type="System.String" DbType="VarChar(402)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

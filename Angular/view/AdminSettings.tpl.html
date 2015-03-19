@@ -1,0 +1,114 @@
+<div class="row">
+    <div class="">
+        <div class="push-4 large-8">
+            <div class="title-script-larger">General Site Maintenance
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <form  method="post" id="update" action="/api/updateSettings" enctype="multipart/form-data" >
+        <div class="large-6 columns">
+
+            <div class="panel">
+                <div class="title-standard">Company Info</div>
+                <div class="row">
+                    <div class="columns">
+                        <input id='id' name='id' type="hidden" ng-value="SettingsForm._id" ng-model="EditItem" />
+                        <label>Company Name
+                            <input id="compName" name="compName" type="text" placeholder="Company Name" ng-model="SettingsForm.name"  required/>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="columns">
+                        <label>Company Abbreviation
+                            <input id="compAbbr" name="compAbbr" type="text" placeholder="Company Abbreviation" ng-model="SettingsForm.abbr"  required/>
+                        </label>
+                    </div>
+                </div>
+                <div class="title-standard">News Listings</div>
+                <div class="row">
+                    <div class="columns">
+
+                        <label>Item count per page
+                            <input id="page" name="page" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  ng-model="SettingsForm.pageSize" required/>
+                        </label>
+                    </div>
+                </div>
+
+
+                <!--<div class="row hidden">-->
+                    <!--<div class="columns">-->
+                        <!--<label>Company Banner File-->
+                        <!--</label>-->
+                        <!--<input id="fileBanner" name="fileBanner" class="" type="file" value="file up"/>-->
+                        <!--&lt;!&ndash;<div class=" push-9 button tiny">Select Image</div>&ndash;&gt;-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <div class="v-space-100"></div>
+
+                <div class="row right-align">
+
+                    <input class="push-7 button tiny" type='submit' value="Update"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="large-6 columns">
+            <div class="panel">
+                <div class="title-standard">File Categories</div>
+                    <ul>
+                        <li><span class="byline"><span class="bold-it">'All'</span> Category should always be added as the last entry.</span></li>
+                        <li><span class="byline">Changing or Removing a Category will require files previously assigned to it to be reassigned a new category since name has been changed/deleted.  Reassign in file maintenance.</span></li>
+                    </ul>
+                <p></p>
+                <div class="row">
+                    <div class="columns">
+                        <label>File Category 1
+                            <input id="cat1" name="cat1" ng-model="SettingsForm.category[0].title" type="text" placeholder=""/>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="columns">
+                        <label>File Category 2
+                            <input id="cat2" name="cat2" ng-model="SettingsForm.category[1].title" type="text" placeholder=""/>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="columns">
+                        <label>File Category 3
+                            <input id="cat3" name="cat3" ng-model="SettingsForm.category[2].title"  type="text" placeholder=""/>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="columns">
+                        <label>File Category 4
+                            <input id="cat4" name="cat4" ng-model="SettingsForm.category[3].title" type="text" placeholder=""/>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="columns">
+                        <label>File Category 5
+                            <input id="cat5" name="cat5"  ng-model="SettingsForm.category[4].title" type="text" placeholder="" />
+                        </label>
+                    </div>
+                </div>
+                <div class="v-space-100"></div>
+
+                <div class="row right-align">
+                    <input class="push-7 button tiny" type="submit" value="Update" />
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+

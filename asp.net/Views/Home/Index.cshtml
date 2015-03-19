@@ -1,0 +1,93 @@
+﻿@model Intranet.Models.MarinerResult
+@{    
+    if (Request.QueryString["layout"] == "fluid")
+    {
+        ViewBag.Title = "Mariner Information Center";
+        ViewBag.Message = "Bootstrap Fluid Layout";
+        Layout = "~/Views/Shared/_LayoutFluid.cshtml";
+    }
+    else
+    {
+        ViewBag.Title = "Mariner Information Center";
+        ViewBag.Message = "Bootstrap Standard Layout";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+<script src="../../Scripts/jquery-1.7.2-vsdoc.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.chained.js" type="text/javascript"></script>
+
+   @*  <script type="text/javascript">
+        $(function () {
+            $('#searchResults > table > tbody > tr ').hover(function () {
+                $(this).addClass('hover');
+            }, function () {
+                $(this).removeClass('hover');
+            });
+    });*@
+    </script> 
+<form class="well" method="get">
+
+    <label><b>Search</b></label>
+    <div class="controls">
+        <label class="radio inline">
+            <input name="rdSearchOptions" value="Last" id="LName" type="radio" checked>
+            <span class="labelInline">Last Name </span>
+        </label>
+        <label class="radio inline">
+            <input name="rdSearchOptions" value="First" id="FName" type="radio"><span class="labelInline">First Name</span>
+        </label>
+        <label class="radio inline">
+            <input name="rdSearchOptions" value="Emp" id="Emp" type="radio"><span class="labelInline">Employer</span>
+        </label>
+         <label class="radio inline">
+            <input name="rdSearchOptions" value="DOB" id="DOB" type="radio"><span class="labelInline">Date of Birth (mm/dd/yyyy)</span>
+        </label>
+    </div>
+    <input id="txtSearch" name="txtSearch" type="input" class="span3 focused" placeholder="Type something…">
+    <button type="submit" class="btn">Submit</button>
+    <span class="@ViewBag.SearchError">Last name, First name, Employer or Date of Birth is required for search.</span>
+    <br />
+    @if (ViewBag.ResultData != null)
+    {
+        <br />
+        <div style="height: 570px; overflow-x: hidden; overflow: scroll;">
+            <table id="searchResults" class="table table-hover">
+                <thead>
+                    <tr>
+                        <td><b>Name</b></td>
+                        <td><b>Date of Birth</b></td>
+                        <td><b>Employer</b></td>
+                        <td><b>Location</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Intranet.Models.MarinerResult item in ViewBag.ResultData)
+                    { 
+                        @*<tr>
+                            <a href="Info/Details/@item.MarinerID">
+                                <td>@item.Fullname</td>
+                                <td>@item.DOB</td>
+                                <td>@item.CompanyName</td>
+                                <td>@item.Location</td>
+                            </a>
+                        </tr>*@
+                        
+                        <tr>
+                            <a href="Info/Details/@item.MarinerID">
+                              
+                                <td><a href="Info/Details/@item.MarinerID">@item.Fullname</a></td>
+                                <td><a href="Info/Details/@item.MarinerID">@item.DOB</a></td>
+                                <td><a href="Info/Details/@item.MarinerID">@item.CompanyName</a></td>
+                                <td><a href="Info/Details/@item.MarinerID">@item.Location</a></td>
+                            </a>
+                        </tr>
+                        
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
+</form>

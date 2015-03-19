@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="TifAdmin" ng-controller="AdminCtrl">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> Admin</title>
+    <link rel="stylesheet" href="../public/css/vnd/foundation.min.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Oxygen:400,700|Allan:700,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../public/css/site.css">
+
+</head>
+<body ng-cloak >
+<div class="header">
+    <div class="v-space-10"></div>
+    <div class="script row">
+        {{Settings.abbr}} Intranet Administration
+    </div>
+<p>
+
+</p>
+</div>
+<!-- template on auth -->
+<div ng-hide="loginVisible">
+    <div class="row" >
+        <div class="push-2 large-8">
+                <ul class="stack-for-small round secondary button-group ">
+                    <li><a href="#/News" class="button  [alert success secondary] [disabled]">News</a></li>
+                    <li><a href="#/Files" class="button  [alert success secondary] [disabled]">Files</a></li>
+                    <li><a href="#/Links" class="button  [alert success secondary] [disabled]">Links</a></li>
+                    <li><a href="#/Users" class="button  [alert success secondary] [disabled]">Users</a></li>
+                    <li><a href="#/Settings" class="button  [alert success secondary] [disabled]">Settings</a></li>
+                    <li><a href="../logout" class="button  [alert success secondary] [disabled]">Logout</a></li>
+                </ul>
+        </div>
+    </div>
+
+    <div>
+        <div ng-view></div>
+    </div>
+
+</div>
+
+<!-- template on non-auth -->
+<div class="row" ng-show="loginVisible">
+    <div class="push-3 large-6">
+        <div class="panel">
+        <admin-login  ></admin-login>
+        </div>
+    </div>
+</div>
+
+    <script src="../public/js/vnd/angular.min.js"></script>
+    <script src="../public/js/vnd/angular-resource.min.js"></script>
+    <script src="../public/js/vnd/angular-route.min.js"></script>
+    <script src="../public/js/vnd/lodash.min.js"></script>
+    <script src="../public/js/appAdmin.js"></script>
+    <script type="text/javascript">
+        angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+    </script>
+</body>
+</html>

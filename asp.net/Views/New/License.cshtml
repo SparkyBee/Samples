@@ -1,0 +1,164 @@
+﻿@{
+    ViewBag.Title = "License";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add New License</h2>
+<i>* required fields</i>
+
+
+<script src="../../Scripts/jquery-1.7.2-vsdoc.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.chained.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#LicenseType").chained("#CountryType");
+
+        $("#IssueDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+        $("#ExpirationDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+
+
+    });
+</script>
+<div class="well">
+    <div class="row">
+        <div class="span8 text-XLarge">License</div>
+        <div class="span3">
+            <a class="btn btn-small" href="../../Info/Details/@Url.RequestContext.RouteData.Values["id"]">Back to Mariner Information
+            </a>
+        </div>
+    </div>
+
+
+    <!-- Error Success Msg -->
+    <div class="row">
+        <div class="span5">
+            @if (ViewBag.Error != null)
+            { 
+                <div class="alert alert-error">
+                    Error:  A country and license type must be selected.  
+             <button class="close" data-dismiss="alert">×</button>
+                </div>
+
+ 
+            }
+
+            @if (!Request.QueryString["type"].IsEmpty())
+            {
+                if (@Request.QueryString["type"] == Intranet.Utils.Const.UserSuccess)
+                {
+                <div class="alert alert-success">@Request.QueryString["msg"]
+                    <button class="close" data-dismiss="alert">×</button>
+                </div>
+                }
+                else if (@Request.QueryString["type"] == Intranet.Utils.Const.UserError)
+                {
+                <div class="alert alert-error">@Request.QueryString["msg"]
+                    <button class="close" data-dismiss="alert">×</button>
+                </div>
+
+                }
+
+            }
+
+
+
+            <div class="span4 text-XLarge">@ViewBag.Mariner</div>
+            <!-- <div class="span4 text-XLarge">@ViewBag.MarinerAddress</div>-->
+
+        </div>
+    </div>
+    <br />
+
+
+
+
+
+    @using (Html.BeginForm("License", "New", FormMethod.Post))
+    {     
+        <div class="row">
+            <div class="span5">
+                <label>Endorsement Issued *</label>
+                <input class="input-xxlarge" id="EndorsementInfo" name="EndorsementInfo" value="" />
+                <br />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="span3">
+                Issue<br />
+                <input id="IssueDate" name="IssueDate" type="text" value="">
+            </div>
+            <div class="span4">
+                Expiration<br />
+                <input id="ExpirationDate" name="ExpirationDate" type="text" value="">
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="span3">
+                <label>Country *</label>
+                <select id="CountryType">
+                    <option value="">-- Please Select --</option>
+                    @foreach (var Country in ViewBag.LookupCountry)
+                    {  
+                        <option value="@Country.id">@Country.Country1</option>          
+                    }
+                </select>
+            </div>
+
+            <div class="span4">
+                <label>License *</label>
+                <select id="LicenseType" name="LicenseID" style="width: 325px">
+                    <option value="">-- Please Select --</option>
+                    @foreach (var License in ViewBag.LookupLicense)
+                    {
+             
+                        <option   class="@License.CountryID" value="@License.Id">@License.Title</option> 
+                    }
+                </select>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="span10">
+                <br />
+                <input type="checkbox" id="ckPendingGovt" value="true" name="ckPendingGovt" title="Pending Government" />Pending Government &nbsp;&nbsp;&nbsp;
+                <input type="checkbox" id="ckPendingGC" value="true" name="ckPendingGC" title="Pending GC" /><br />
+                Pending GC
+                <br />
+                <br />
+                Global Compliance Notes<br />
+                <textarea id="NotesGlobal" name="NotesGlobal" class="span10" cols="1" rows="4"></textarea>
+                <br />
+
+                Pending Government Notes<br />
+                <textarea id="GovtNotes" name="NotesPendingGovt" class="span10" cols="1" rows="4"></textarea>
+            </div>
+        </div>
+        <input type="hidden" name="id" value="" />
+        <input type="hidden" name="MarinerID" value="@Url.RequestContext.RouteData.Values["id"]" />    
+        <br />
+        <br />
+        <input type="submit" value="Add License" /> 
+   
+    }
+
+
+</div>
+
+<br />
+<br />
+
+<br />

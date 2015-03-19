@@ -1,0 +1,144 @@
+<!--<div class="title-script-files underline-it">{{info.abbr}}  Files</div>-->
+<!--<p> </p>-->
+<!--<dl class="sub-nav">-->
+    <!--<div ng-repeat="item in menu.menu">-->
+        <!--<dd class="{{item.selected}}"><a ng-click="ctrl.changeFileMenu(item.title)" >{{item.title}}</a></dd>-->
+    <!--</div>-->
+<!--</dl>-->
+<!--<ul>-->
+    <!--<div  ng-repeat="fl in fItems | filter: fl.category = menu.selection() ">-->
+        <!--<li class='file-list'><a href="public/docs/{{fl.location}}" target="_blank" >{{fl.title}}</a></li>-->
+    <!--</div>-->
+<!--</ul>-->
+<!--<dd class="{{item.selected}}"><a ng-click="ctrl.changeFileMenu(item.title)" >{{fItem.title}}</a></dd>-->
+<div class="row">
+
+<form  method="post" name="create"  action="/api/createNewsItem" enctype="multipart/form-data" >
+    <div class="">
+        <div class=""><h4><div>{{listing.title}}</div></h4></div>
+    <!--{{listing._id}}-->
+            <div class="row"><div class="push-right pull-1"><i class="fa fa-asterisk"></i> required </div></div>
+            <div class="row">
+
+                <div class="large-5 columns">
+                    <input id='cid' name='id' type="hidden" value="000"/>
+                    <label>First Name <i class="fa fa-asterisk"></i>
+                        <input id="cFirst" name="cFirst" type="text" placeholder="First Name" required/>
+                    </label>
+                </div>
+                <div class="large-7 columns">
+                    <label>Last Name <i class="fa fa-asterisk"></i>
+                        <input id="cLast" name="cLast" type="text" placeholder="Last Name" required/>
+                    </label>
+                </div>
+
+            </div>
+
+        <div class="row">
+
+            <div class="large-5 columns">
+                <label>Email Address <i class="fa fa-asterisk"></i>
+                    <input id="cEmail" name="cEmail" type="text" placeholder="Email Address" required />
+                </label>
+            </div>
+
+            <div class="large-3 columns">
+                <label>Best Phone #
+                    <input id="cAvailPhone" name="cAvailPhone" type="text" placeholder="xxx-xxx-xxxx" />
+                </label>
+            </div>
+            <div class="large-4 columns">
+                <label>Best Time for Contacting
+                    <input id="cAvailTime" name="cAvailPhone" type="text" placeholder="example: after 5pm M-F"/>
+                </label>
+            </div>
+            <!--<div class="large-3 columns">-->
+                <!--<label>Alternate Phone #-->
+                    <!--<input id="cAlterPhone" name="cAlterPhone" type="text" placeholder="Phone xxx-xxx-xxxx"/>-->
+                <!--</label>-->
+            <!--</div>-->
+
+        </div>
+
+
+            <!--<div class="row">-->
+
+                <!--<div class="columns">-->
+                    <!--<label>Address  -->
+                        <!--<input id="cAddress" name="cAddress" type="text" placeholder="Address including Apt #" required/>-->
+                    <!--</label>-->
+                <!--</div>-->
+
+
+            <!--</div>-->
+
+            <!--<div class="row">-->
+
+                <!--<div class="large-7 columns">-->
+                    <!--<label>City-->
+                        <!--<input id="cCity" name="cCity" type="text" placeholder="City" />-->
+                    <!--</label>-->
+                <!--</div>-->
+                <!--<div class="large-2 columns">-->
+                    <!--<label>State-->
+                        <!--<input id="cState" name="cState" type="text" placeholder="State"/>-->
+                    <!--</label>-->
+                <!--</div>-->
+                <!--<div class="large-3 columns">-->
+                    <!--<label>ZipCode-->
+                        <!--<input id="cZip" name="cZip" type="text" placeholder="ZipCode"/>-->
+                    <!--</label>-->
+                <!--</div>-->
+
+            <!--</div>-->
+
+
+        <div class="row">
+
+            <div class=" large-5 columns">
+             <label>Cover Letter &nbsp;
+            </label>
+            <input  id="cCover" name="cCover"   type="file" />
+            </div>
+
+            <div class=" large-5 columns">
+                <label>Resume <i class="fa fa-asterisk"></i>
+                </label>
+                <input  id="cResume" name="cResume"   type="file"   required/>
+            </div>
+        </div>
+
+        <div class="row   ">
+            <div class="columns  push-1 large-10 panel callout"><span class="push-3">The following is optional, but helpful</span></div>
+        </div>
+
+        <div class="row">
+            <div class="columns">
+                <label>Top Skills
+                    <input id="cSkills" name="cSkills" type="text" placeholder="list of skills & expertise" />
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="columns">
+                <label>Certifications / Training
+                    <input id="cCerts" name="cCerts" type="text" placeholder="vendor certifications or recent training courses" />
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="columns">
+                <label>Additional Comments
+                    <input id="cComment" name="cComment" type="text" placeholder="anything you may want to add" />
+                </label>
+            </div>
+        </div>
+        <div class="row right-align">
+            <input type="submit" class="button tiny push-10"   value="Save"/>
+        </div>
+        </div>
+    </div>
+</form>
+</div>

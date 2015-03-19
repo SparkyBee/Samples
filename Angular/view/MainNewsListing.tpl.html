@@ -1,0 +1,13 @@
+<div class="title-script">Current Listings</div>
+    <ul class="no-bullet">
+        <div ng-repeat="news in items">
+            <li class="news-listing"><div  class="byline pad-bottom-5">{{news.newsDate}}</div>
+                <a ng-click="ctrl.setNews(news._id)">{{news.title}}</a>
+            </li>
+        </div>
+    </ul>
+<div class="next-prev-group" >
+    <a class="byline"            ng-hide="paging.prior == null" ng-click="ctrl.priorNews(paging.prior)"><i class="fa fa-chevron-left"></i> prev</a>
+    <a class="byline push-right" ng-hide="paging.next == null" ng-click="ctrl.nextNews(paging.next)">next <i class="fa fa-chevron-right"></i></a>
+</div>
+

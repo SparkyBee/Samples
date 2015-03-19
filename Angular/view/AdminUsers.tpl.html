@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="">
+        <div class="push-4 large-8">
+            <div class="title-script-larger">Users Maintenance</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="large-5 columns">
+        <div class="panel">
+            <admin-grid pass-method="UsersCtrl" list="UsersList" first-column="'username'" second-column="''"></admin-grid>
+        </div>
+    </div>
+
+    <div class="large-7 columns" ng-show="!createVisible && EditItem == undefined">
+        <div class="panel">
+            <div >
+                <label class="bold-it">Please select an item from the list to edit and update <br/>
+                    or click button to create a new one.</label>
+                <br/>
+                <div class="push-9 button tiny" ng-click="UsersCtrl.ShowCreate()">Add a User</div>
+            </div>
+        </div>
+    </div>
+
+
+    <form  method="post" id="update" ng-hide="createVisible || EditItem == undefined"  action="/api/updateUser" enctype="multipart/form-data" >
+        <div class="large-7 columns">
+            <div class="panel"><h4>Update</h4>
+
+                <div class="row">
+                    <div class="columns">
+                        <input id='id' name='id' type="hidden" ng-value="EditItem._id" ng-model="EditItem" />
+                        <label>User name
+                            <input readonly id="userName" name="userName" type="text" placeholder="User Name" ng-model="EditItem.username" ng-value="EditItem.username"/>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="columns">
+                        <label>Password
+                            <input id="userPassword"  name="userPassword" type="password" placeholder="Password" ng-model="EditItem.password" ng-value="EditItem.password" required/>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="v-space-100"></div>
+
+                <div class="row right-align">
+                    <div class="push-1 button tiny" ng-click="UsersCtrl.ShowCreate()">Add User</div>
+                    <div  ng-hide="EditItem._id == null" class="push-3 button tiny" ng-click="UsersCtrl.DeleteItem(EditItem._id)">Delete</div>
+                    <input  ng-hide="EditItem._id == null" type="submit" class="push-4 button tiny" value="Save/Update"/>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+    <form  method="post" id="create" ng-show="createVisible"  action="/api/createUser" enctype="multipart/form-data" >
+        <div class="large-7 columns">
+            <div class="panel"><h4>Add New</h4>
+
+                <div class="row">
+                    <div class="columns">
+                        <label>User name
+                            <input id="cuserName" name="userName" type="text" placeholder="User Name" required/>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="columns">
+                        <label>Password <span class="byline"> (5 chars or more)</span>
+                            <input id="cuserPassword" name="userPassword" type="password" placeholder="Password" required/>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="v-space-100"></div>
+
+                <div class="row right-align">
+                    <input type="submit" class="push-7 button tiny" value="Save User"/>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+
+
+
+</div>

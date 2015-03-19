@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="">
+        <div class="push-4 large-8">
+            <div class="title-script-larger">Links Maintenance</div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="large-5 columns">
+        <div class="panel">
+            <admin-grid pass-method="LinksCtrl" list="LinksList" first-column ="'title'" second-column="''"></admin-grid>
+        </div>
+    </div>
+
+    <div class="large-7 columns" ng-show="!createVisible && EditItem == undefined">
+        <div class="panel">
+            <div >
+                <label class="bold-it">Please select an item from the list to edit and update <br/>
+                    or click button to create a new one.</label>
+                <br/>
+                <div class="push-9 button tiny" ng-click="LinksCtrl.ShowCreate()">Add a Link</div>
+            </div>
+        </div>
+    </div>
+
+    <form  method="post" id="update" ng-hide="createVisible || EditItem == undefined || EditItem == null"  action="/api/updateLink" enctype="multipart/form-data" >
+        <div class="large-7 columns">
+            <div class="panel"><h4>Update</h4>
+                <div class="row">
+                    <div class="columns">
+                        <input id='id' name='id' type="hidden" ng-value="EditItem._id" ng-model="EditItem" />
+                        <label>Link Title
+                            <input id="linkTitle" name="linkTitle" type="text" placeholder="Title" ng-model="EditItem.title" ng-value="EditItem.title" required />
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="columns">
+                        <label>Link URL <span class="byline"> (with prefix http:// or whatever prefix is needed)</span>
+                            <input id="linkURL" name="linkURL" type="text" placeholder="URL" ng-model="EditItem.url" ng-value="EditItem.url" required/>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="v-space-100"></div>
+
+                <div class="row right-align">
+                    <div class="push-1 button tiny" ng-click="LinksCtrl.ShowCreate()">Add Link</div>
+                    <div ng-hide="EditItem._id == null" class="push-3 button tiny" ng-click="LinksCtrl.DeleteItem(EditItem._id)">Delete</div>
+                    <input ng-hide="EditItem._id == null"  type="submit" class="push-4 button tiny" value="Save/Update"/>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+    <form  method="post" id="create" ng-show="createVisible"  action="/api/createLink" enctype="multipart/form-data" >
+        <div class="large-7 columns">
+            <div class="panel"><h4>Add New</h4>
+                <div class="row">
+                    <div class="columns">
+                        <label>Link Title
+                            <input id="clinkTitle" name="linkTitle" type="text" placeholder="Title" required/>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="columns">
+                        <label>Link URL <span class="byline"> (with prefix http:// or whatever prefix is needed)</span>
+                            <input id="clinkURL" name="linkURL" type="text" placeholder="URL" required/>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="v-space-100"></div>
+
+                <div class="row right-align">
+                    <input type="submit" class="push-7 button tiny" value="Save Link"/>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+
+
+
+</div>

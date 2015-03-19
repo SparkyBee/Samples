@@ -1,0 +1,127 @@
+﻿@model Intranet.Models.MarInfo
+@{
+    ViewBag.Title = "Mariner Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="../../Scripts/jquery-1.7.2-vsdoc.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.chained.js" type="text/javascript"></script>
+
+
+
+
+
+<div class="row">
+    <div class="span8 text-XLarge">Mariner Information </div>
+    <div class="span4">
+        <a class="btn btn-small" href="../../">Back to Search 
+        </a>
+    </div>
+</div>
+
+@if (@Model.Mar != null)
+{        <div class="well">
+    <div class="row ">
+        <span class="span4 text-Medium">
+            <a class="btn-mini btn-info" style="vertical-align:top"  href="@Url.Content("~/Edit/Mariner/" + Model.Mar.id)">Edit</a>
+            <label class="text-Medium ">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <span class="text-Large">@Model.Mar.LastName, @Model.Mar.FirstName @Model.Mar.MiddleName</span>
+        </span>
+
+        <span class="span4 text-Medium" id="4">
+            <label class="text-Medium ">Address</label>
+            <span class="">@Model.Mar.Address</span>&nbsp;
+                  <span class="">@Model.Mar.Address2</span><br />
+            <span class="">@Model.Mar.City</span>,&nbsp;
+                  <span class="">@Model.Mar.State</span>&nbsp;&nbsp;
+                  <span class="">@Model.Mar.ZipCode</span><br />
+            <span class="">@Model.Mar.Country</span>
+        </span>
+        <span class="span3 text-Medium">
+            <label class="text-Medium">Contact Info</label>
+            Home: <span class="">@Model.Mar.HomePhone</span><br />
+            Cell: <span class="">@Model.Mar.CellPhone</span><br />
+            Email: <span class="">@Model.Mar.Email</span>
+        </span>
+    </div>
+    <br />
+    <div class="row ">
+        <div class="span4 text-Medium">
+            <span class="text-Medium">Employer<span class="text-Small"><br />@Model.Mar.Employer</span><br />
+            </span>
+            <span class="">
+
+                <span class="text-Medium">Vessel<br />
+                    <span class="text-Small">@Model.Mar.RigName</span></span>
+            </span>
+        </div>
+        <span class="span4 text-Medium" id="4">
+            <label class="text-Medium">Personal Info</label>
+            <span class="">SSN: @Model.Mar.SSN</span><br />
+            <span class="">Passport: @Model.Mar.Passport</span><br />
+            <span class="">Citizenship: @Model.Mar.Citizenship</span><br />
+            <span class="">Birth Cert: @Model.Mar.BirthCert</span>
+
+        </span>
+        <span class="span3 text-Medium">
+            <label class="text-Medium">&nbsp;</label>
+            <span class="">Birth City: @Model.Mar.CityOfBirth</span><br />
+            <span class="">Birth State: @Model.Mar.StateOfBirth</span><br />
+            <span class="">Birth Country: @Model.Mar.CountryOfBirth</span><br />
+            <span class="">Birth Date: @Convert.ToDateTime(Model.Mar.DateOfBirth).ToShortDateString()</span><br />
+
+        </span>
+    </div>
+    </div> 
+    <div class="well">
+        <div class="row ">
+            <div class="span11 text-Medium">
+                <a class="btn-mini btn-info" style="vertical-align:top" href="@Url.Content("~/Edit/Mariner/" + Model.Mar.id)">Add New</a>
+                <label class="text-Medium">Mariner Attachments&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <span class="">
+                    @if (Model.MAttach.Count > 0)
+                    {
+                        foreach (var att in Model.MAttach)
+                        {
+                 
+                        <span class="text-Small"><a href="../../Documents/@att.Location/@att.Filename">@att.Filename</a>&nbsp;&nbsp; &nbsp;</span>                  
+                        }
+                    }
+                </span>
+            </div>
+        </div>
+    </div>    
+    <div class="well">
+        <div class="row ">
+            <div class="span11 text-Medium">
+                <a class="btn-mini btn-info" style="vertical-align:top"  href="@Url.Content("~/New/License/" + Model.Mar.id)">Add New</a>
+                <label class="text-Medium">License Information&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <span class="">
+                    @if (Model.MLisc.Count > 0)
+                    {
+                        foreach (var lic in Model.MLisc)
+                        {
+                            var anchorCSS = "";
+                            if (lic.PendingFlag)
+                            {
+                                anchorCSS = "isPending";
+                            }
+                        <span class="text-Small"><a class="@anchorCSS"  href="@Url.Content("~/Edit/License/" + lic.MarinerLicenseID)">@lic.EndoInfo</a>&nbsp; &nbsp; &nbsp; </span>                  
+                        }
+                    }
+                </span>
+            </div>
+        </div>
+    </div>
+       
+   
+    
+    
+    
+    
+}
+else
+{ 
+    @: Not Found
+}
+

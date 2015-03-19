@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+    <script src="../../Scripts/modernizr.js" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap-responsive.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css" />    
+    <link type="text/css" href="@Url.Content("~/Content/css/redmond/jquery-ui-1.8.22.custom.css")" rel="stylesheet" />
+    
+</head>
+<body>
+    <div class="navbar navbar-fixed-top ">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="@Url.Content("~/")">Mariner Information Center</a>
+                @Html.Partial("_NavPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @RenderBody()    
+        <footer class="footer">
+            
+                <hr />
+                    &copy; Global Compliance, LLC &nbsp;&nbsp; 2012
+                    @if (DateTime.Now.Year != 2012)
+                    {<span>- @DateTime.Now.Year.ToString()</span>  }
+                    &nbsp;&nbsp;&nbsp;&nbsp; v.1.4.3
+         </footer>
+    </div>
+
+    <script src="../../Scripts/jquery-1.7.2-vsdoc.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery-1.7.2.js"  type="text/javascript"></script>
+    <script src="../../Scripts/jquery.chained.js" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/site.js")" type="text/javascript"></script> 
+    <script type="text/javascript" src="../../Scripts/jquery-ui-1.8.22.custom.min.js"></script>
+</body>
+</html>
